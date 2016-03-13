@@ -290,6 +290,7 @@ void GrahamsAlgorithm( std::vector< Point< 2 , CType > >& points , std::vector< 
 	std::vector<Point_Slope> negative_slope_points;
 
 	// Calc slope for each point in the space and add them in the sorted order of angle to a vector
+	// O(n)
 	for (int i = 0; i < points.size(); i++) {
 		if(check_points(sentinel, points[i])) {			
 			continue;
@@ -302,7 +303,9 @@ void GrahamsAlgorithm( std::vector< Point< 2 , CType > >& points , std::vector< 
 		} else {
 			positive_slope_points.push_back(p);
 		}		
-	}	
+	}
+
+	// O(nlogn)
 	std::sort(positive_slope_points.begin(), positive_slope_points.end());
 	std::sort(negative_slope_points.begin(), negative_slope_points.end());	
 	for (int i = 0; i < positive_slope_points.size(); i++) {
